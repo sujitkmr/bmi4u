@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymBMI - Calculate Your BMI Instantly &amp; Understand Your Health Better</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/logo.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/report-banner.css">
+<link rel="stylesheet" href="css/summary.css">
+<link rel="stylesheet" href="css/categories.css">
+<link rel="stylesheet" href="css/tools.css">
+<link rel="stylesheet" href="css/why-choose.css">
+<link rel="stylesheet" href="css/tips-faq.css">
+<link rel="stylesheet" href="css/cta-strip.css">
+<link rel="stylesheet" href="css/newsletter.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/report-popup.css">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">BMI<span class="logo-accent">4U</span></div>
+    <div class="badge-free"><span class="icon">🎁</span> 100% FREE</div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <!-- Left column -->
+    <div class="hero-left">
+      <div class="trust-pill">
+        <span class="star">★</span> Trusted by 10,000+ Users
+        <span class="stars">★★★★★</span>
+      </div>
+
+      <h1 class="hero-title">
+        Calculate Your BMI Instantly &amp;
+        <span class="highlight">Understand Your<br>Health Better</span>
+      </h1>
+
+      <p class="hero-sub">
+        Get accurate BMI results using WHO standards along with personalized health insights.
+      </p>
+
+      <div class="mini-features">
+        <div class="mini-feature">
+          <span class="mini-icon blue">🌐</span>
+          <span>WHO<br>Standard</span>
+        </div>
+        <div class="mini-feature">
+          <span class="mini-icon red">🎁</span>
+          <span>100%<br>Free</span>
+        </div>
+        <div class="mini-feature">
+          <span class="mini-icon purple">👤</span>
+          <span>No<br>Signup</span>
+        </div>
+        <div class="mini-feature">
+          <span class="mini-icon pink">🔒</span>
+          <span>Your Data<br>is Private</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: Calculator card -->
+    <div class="hero-right">
+      <div class="calc-card">
+        <div class="calc-card-header">
+          <div class="calc-icon">🧮</div>
+          <div>
+            <h2>BMI Calculator</h2>
+            <p>Enter your details to calculate your BMI</p>
+          </div>
+          <div class="step-indicator">
+            STEP <span id="stepNumber">1</span> OF 2
+            <div class="step-dots">
+              <span class="dot active" data-step="1"></span>
+              <span class="dot" data-step="2"></span>
+            </div>
+          </div>
+        </div>
+
+        <form id="bmiForm" class="calc-form">
+          <!-- Step 1 -->
+          <div class="form-step" id="formStep1">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="height">Height</label>
+                <div class="input-with-select">
+                  <span class="input-icon">📏</span>
+                  <input type="number" id="height" placeholder="Enter height" min="0" max="304.8" step="0.1" required>
+                  <select id="heightUnit">
+                    <option value="cm">cm</option>
+                    <option value="ft">ft/in</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="weight">Weight</label>
+                <div class="input-with-select">
+                  <span class="input-icon">⚖️</span>
+                  <input type="number" id="weight" placeholder="Enter weight" min="0" max="500" step="0.1" required>
+                  <select id="weightUnit">
+                    <option value="kg">kg</option>
+                    <option value="lb">lb</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <div class="input-with-select">
+                  <span class="input-icon">📅</span>
+                  <input type="text" id="dob" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="bday" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <div class="input-with-select">
+                  <span class="input-icon">🧑</span>
+                  <select id="gender" required>
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Calculate BMI <span class="arrow">→</span></button>
+          </div>
+        </form>
+
+        <!-- BMI Preview -->
+        <div class="bmi-preview" id="bmiPreview">
+          <p class="preview-label">✨ Your BMI Preview</p>
+          <div class="preview-body">
+            <div class="gauge-wrap">
+              <svg id="gaugeSvg" viewBox="0 0 200 110" class="gauge-svg">
+                <path d="M10,100 A90,90 0 0,1 55,20" fill="none" stroke="#3b82f6" stroke-width="14" stroke-linecap="round"/>
+                <path d="M55,20 A90,90 0 0,1 100,10" fill="none" stroke="#22c55e" stroke-width="14" stroke-linecap="round"/>
+                <path d="M100,10 A90,90 0 0,1 145,20" fill="none" stroke="#eab308" stroke-width="14" stroke-linecap="round"/>
+                <path d="M145,20 A90,90 0 0,1 190,100" fill="none" stroke="#ef4444" stroke-width="14" stroke-linecap="round"/>
+                <line id="gaugeNeedle" x1="100" y1="100" x2="100" y2="30" stroke="#111827" stroke-width="3" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+                <circle cx="100" cy="100" r="6" fill="#111827"/>
+              </svg>
+              <div class="gauge-value">
+                <span id="bmiValue">23.5</span>
+                <span class="gauge-label">BMI</span>
+              </div>
+            </div>
+            <div class="preview-info">
+              <p class="preview-cat-label">Category</p>
+              <div class="category-pill" id="categoryPill">Healthy Weight</div>
+              <p class="preview-range-label">Healthy Range</p>
+              <p class="preview-range" id="healthyRangeText">18.5 – 24.9</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="trust-row">
+        <span>✅ No Signup Required</span>
+        <span>🛡️ Safe &amp; Secure</span>
+        <span>🔒 Your Data is 100% Private</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== REPORT BANNER ===================== -->
+<section class="report-banner">
+  <div class="container report-banner-inner">
+    <div class="report-banner-left">
+      <div class="report-banner-icon">📄</div>
+      <div>
+        <h3>Get Your Personalized Health Report</h3>
+        <p>Download your detailed BMI report with insights, recommendations &amp; tips in PDF format.</p>
+      </div>
+    </div>
+
+    <div class="report-banner-features">
+      <div class="report-feature">
+        <span class="report-feature-icon blue">📈</span>
+        <span>BMI<br>Analysis</span>
+      </div>
+      <div class="report-feature">
+        <span class="report-feature-icon green">🎯</span>
+        <span>Healthy<br>Range</span>
+      </div>
+      <div class="report-feature">
+        <span class="report-feature-icon orange">🍎</span>
+        <span>Diet<br>Tips</span>
+      </div>
+      <div class="report-feature">
+        <span class="report-feature-icon purple">🏋️</span>
+        <span>Workout<br>Plan</span>
+      </div>
+      <div class="report-feature">
+        <span class="report-feature-icon pink">❤️</span>
+        <span>Health<br>Tips</span>
+      </div>
+    </div>
+
+    <a href="#" class="btn btn-outline report-banner-btn download-report-btn">
+      <span class="report-banner-btn-icon">⬇</span>
+      <span class="report-banner-btn-text">Download<br><small>Your Health Report</small></span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== HEALTH SUMMARY ===================== -->
+<section class="summary-section">
+  <div class="container">
+    <h2 class="section-title">Your Health Summary</h2>
+    <div class="summary-grid" id="summaryGrid">
+      <div class="summary-card">
+        <span class="summary-icon">📉</span>
+        <p class="summary-label">BMI</p>
+        <p class="summary-value" id="sumBmi">23.5</p>
+        <p class="summary-sub" id="sumBmiCat">Healthy</p>
+      </div>
+      <div class="summary-card">
+        <span class="summary-icon">🎯</span>
+        <p class="summary-label">Healthy Weight Range</p>
+        <p class="summary-value" id="sumWeightRange">59 – 74 kg</p>
+        <p class="summary-sub">Target Range</p>
+      </div>
+      <div class="summary-card">
+        <span class="summary-icon">🔥</span>
+        <p class="summary-label">Daily Calories</p>
+        <p class="summary-value" id="sumCalories">2,150 kcal</p>
+        <p class="summary-sub">Recommended</p>
+      </div>
+      <div class="summary-card">
+        <span class="summary-icon">🧍</span>
+        <p class="summary-label">Body Fat</p>
+        <p class="summary-value" id="sumBodyFat">18 %</p>
+        <p class="summary-sub">Healthy</p>
+      </div>
+      <div class="summary-card">
+        <span class="summary-icon">💧</span>
+        <p class="summary-label">Water Intake</p>
+        <p class="summary-value" id="sumWater">3.2 L</p>
+        <p class="summary-sub">Daily Goal</p>
+      </div>
+      <div class="summary-card">
+        <span class="summary-icon">🎯</span>
+        <p class="summary-label">Goal</p>
+        <p class="summary-value" id="sumGoal">Maintain</p>
+        <p class="summary-sub">Current Weight</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BMI CATEGORIES ===================== -->
+<section class="categories-section">
+  <div class="container">
+    <h2 class="section-title">BMI Categories</h2>
+    <div class="categories-grid" id="categoriesGrid">
+      <div class="category-card cat-under" data-cat="underweight">
+        <span class="cat-icon">🧍</span>
+        <h3>Underweight</h3>
+        <p class="cat-range">&lt; 18.5</p>
+        <p class="cat-desc">You may need to gain some weight.</p>
+      </div>
+      <div class="category-card cat-normal" data-cat="normal">
+        <span class="cat-icon">🧍</span>
+        <h3>Normal Weight</h3>
+        <p class="cat-range">18.5 – 24.9</p>
+        <p class="cat-desc">Great job! You have a normal BMI.</p>
+      </div>
+      <div class="category-card cat-over" data-cat="overweight">
+        <span class="cat-icon">🧍</span>
+        <h3>Overweight</h3>
+        <p class="cat-range">25 – 29.9</p>
+        <p class="cat-desc">You may be at risk of health problems.</p>
+      </div>
+      <div class="category-card cat-obese" data-cat="obese">
+        <span class="cat-icon">🧍</span>
+        <h3>Obese</h3>
+        <p class="cat-range">≥ 30</p>
+        <p class="cat-desc">You may be at higher risk of serious health problems.</p>
+      </div>
+    </div>
+    <p class="disclaimer">ⓘ BMI is a screening tool and not a diagnosis. Consult your doctor for personalized advice.</p>
+  </div>
+</section>
+
+<!-- ===================== TOOLS ===================== -->
+<section class="tools-section">
+  <div class="container tools-grid">
+    <div class="tool-card">
+      <h3>Personal Health Report</h3>
+      <p>Get a detailed PDF report with insights about your BMI, ideal weight, calories, body fat, and personalized tips.</p>
+      <a href="#" class="btn btn-outline download-report-btn" id="downloadReportBtn">Download Free Report ⬇</a>
+    </div>
+    <div class="tool-card">
+      <h3>BMI Tracker</h3>
+      <p>Track your progress over time with beautiful charts and achieve your goals.</p>
+      <div class="mini-chart">
+        <svg viewBox="0 0 300 120" class="chart-svg">
+          <polyline points="10,80 55,60 100,70 145,40 190,55 235,35 280,45" fill="none" stroke="#ef4444" stroke-width="3"/>
+          <g fill="#ef4444">
+            <circle cx="10" cy="80" r="3"></circle>
+            <circle cx="55" cy="60" r="3"></circle>
+            <circle cx="100" cy="70" r="3"></circle>
+            <circle cx="145" cy="40" r="3"></circle>
+            <circle cx="190" cy="55" r="3"></circle>
+            <circle cx="235" cy="35" r="3"></circle>
+            <circle cx="280" cy="45" r="3"></circle>
+          </g>
+        </svg>
+        <div class="chart-labels">
+          <span>May 1</span><span>May 8</span><span>May 15</span><span>May 22</span><span>May 29</span>
+        </div>
+      </div>
+      <a href="#" class="btn btn-outline">Start Tracking →</a>
+    </div>
+    <div class="tool-card">
+      <h3>Healthy Weight Calculator</h3>
+      <p>Find your ideal weight range based on your height, age, and gender.</p>
+      <ul class="check-list">
+        <li>✔ Ideal Weight Range</li>
+        <li>✔ Calories Needed</li>
+        <li>✔ Personalized Goal</li>
+      </ul>
+      <a href="#" class="btn btn-outline">Calculate Ideal Weight →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY CHOOSE ===================== -->
+<section class="why-section">
+  <div class="container">
+    <h2 class="section-title">Why Choose GymBMI?</h2>
+    <div class="why-grid">
+      <div class="why-item"><span class="why-icon green">✔</span><h4>Accurate Results</h4><p>Based on WHO standards</p></div>
+      <div class="why-item"><span class="why-icon red">⚡</span><h4>Fast &amp; Instant</h4><p>Results in just 10 seconds</p></div>
+      <div class="why-item"><span class="why-icon yellow">🎁</span><h4>Always Free</h4><p>All features completely free</p></div>
+      <div class="why-item"><span class="why-icon purple">👤</span><h4>No Signup</h4><p>No registration required</p></div>
+      <div class="why-item"><span class="why-icon blue">🛡️</span><h4>Private &amp; Secure</h4><p>Your data is safe and encrypted</p></div>
+      <div class="why-item"><span class="why-icon pink">📱</span><h4>Mobile Friendly</h4><p>Works perfectly on all devices</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TIPS + FAQ ===================== -->
+<section class="tips-faq-section">
+  <div class="container tips-faq-grid">
+    <div class="tips-card">
+      <h3>Daily Health Tips</h3>
+      <ul class="tips-list">
+        <li><span class="tip-icon">🥗</span><div><strong>Eat Balanced</strong><p>Include protein, fiber, and healthy fats in your diet.</p></div></li>
+        <li><span class="tip-icon">🏃</span><div><strong>Stay Active</strong><p>30 minutes of exercise can make a big difference.</p></div></li>
+        <li><span class="tip-icon">💧</span><div><strong>Drink More Water</strong><p>Stay hydrated. Aim for 8-10 glasses daily.</p></div></li>
+        <li><span class="tip-icon">😴</span><div><strong>Sleep Well</strong><p>Get 7-8 hours of quality sleep every night.</p></div></li>
+      </ul>
+    </div>
+    <div class="faq-card">
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-question">What is BMI? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>BMI (Body Mass Index) is a simple measure that uses your height and weight to estimate whether your weight falls within a healthy range.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How is BMI calculated? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>BMI is calculated by dividing your weight in kilograms by your height in meters squared (kg/m²).</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is BMI accurate for everyone? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>BMI is a useful screening tool but doesn't account for muscle mass, bone density, or body composition, so it may not be fully accurate for athletes or older adults.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What is a healthy BMI range? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>According to WHO standards, a healthy BMI range is generally between 18.5 and 24.9.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How often should I check my BMI? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>Checking your BMI every few weeks or once a month is generally enough to track meaningful changes.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA STRIP ===================== -->
+<section class="cta-strip">
+  <div class="container cta-grid">
+    <div class="cta-left">
+      <h3>Want to Organize a Health Camp in Your Society or Community?</h3>
+      <p>We conduct Health Awareness Camps, BMI Checkups, Nutrition Talks, and Fitness Sessions.</p>
+      <a href="#" class="btn btn-primary">Contact Us →</a>
+    </div>
+    <div class="cta-divider">or</div>
+    <div class="cta-right">
+      <h3>Special Offers &amp; Future Updates</h3>
+      <p>Get notified about exclusive offers, free health camps, workshops, and more.</p>
+      <a href="#" class="btn btn-outline">Notify Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="newsletter-section">
+  <div class="container newsletter-inner">
+    <div class="newsletter-left">
+      <span class="newsletter-icon">✉️</span>
+      <div>
+        <h4>Stay Updated with Health Tips</h4>
+        <p>Subscribe to our newsletter and never miss an update.</p>
+      </div>
+    </div>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="Enter your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="logo footer-logo">BMI<span class="logo-accent">4U</span></div>
+    <p class="footer-tag">Your trusted companion for a healthier, stronger you.</p>
+    <p class="footer-made">Made with ❤️ for a healthier you.</p>
+    <p class="footer-copy">© 2025 GymBMI.com | All Rights Reserved</p>
+  </div>
+</footer>
+
+<!-- ===================== REPORT DOWNLOAD POPUP ===================== -->
+<div class="report-popup-overlay" id="reportPopupModal">
+  <div class="report-popup" role="dialog" aria-modal="true" aria-labelledby="reportPopupTitle">
+    <button type="button" class="report-popup-close" id="reportPopupClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <div class="report-popup-grid">
+
+      <!-- Left column -->
+      <div class="report-popup-left">
+
+        <div class="report-popup-dial" aria-hidden="true">
+          <svg viewBox="0 0 120 120" width="108" height="108">
+            <defs>
+              <linearGradient id="rpDialGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#22c55e"/>
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#E1E8F0" stroke-width="9"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="url(#rpDialGrad)" stroke-width="9"
+                    stroke-linecap="round" stroke-dasharray="300 314.16" transform="rotate(-90 60 60)"/>
+          </svg>
+          <div class="report-popup-dial-label">
+            <span class="dial-price">₹0</span>
+            <span class="dial-was">was ₹1,499</span>
+          </div>
+        </div>
+
+        <div class="report-popup-eyebrow"><span class="eyebrow-dot"></span>Limited-time bundle</div>
+
+        <h2 class="report-popup-title" id="reportPopupTitle">Claim your <span>Health Report</span> free</h2>
+        <p class="report-popup-subhead">A ₹1,499 report bundle, unlocked at no cost — today only.</p>
+
+        <div class="report-popup-choose">
+          <p class="report-popup-choose-title">Choose your reports <small>select all that apply</small></p>
+          <div class="report-popup-choose-grid">
+            <label class="report-popup-choice" for="reportChoiceBmi">
+              <input type="checkbox" id="reportChoiceBmi" name="reportChoice" value="bmi" checked>
+              <span class="choice-check">✔</span>
+              <span class="choice-icon">📊</span>
+              <strong>BMI Report</strong>
+              <small>Your BMI, category &amp; ideal range.</small>
+            </label>
+            <label class="report-popup-choice" for="reportChoiceDiet">
+              <input type="checkbox" id="reportChoiceDiet" name="reportChoice" value="diet" checked>
+              <span class="choice-check">✔</span>
+              <span class="choice-icon">🥗</span>
+              <strong>Diet Report</strong>
+              <small>A plan built around your goal.</small>
+            </label>
+            <label class="report-popup-choice" for="reportChoiceChart">
+              <input type="checkbox" id="reportChoiceChart" name="reportChoice" value="chart" checked>
+              <span class="choice-check">✔</span>
+              <span class="choice-icon">📋</span>
+              <strong>Diet Chart</strong>
+              <small>An easy chart to follow daily.</small>
+            </label>
+          </div>
+          <p class="report-popup-choose-hint" id="reportChoiceHint">Select at least one report to continue.</p>
+        </div>
+
+        <p class="report-popup-privacy">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+          Your information stays private — never shared with third parties.
+        </p>
+      </div>
+
+      <!-- Right column -->
+      <div class="report-popup-right">
+        <form id="reportPopupForm" class="report-popup-form" novalidate>
+          <div class="report-popup-form-row">
+            <div class="report-popup-field">
+              <label for="reportName">Full Name</label>
+              <div class="report-popup-input">
+                <span class="field-icon">👤</span>
+                <input type="text" id="reportName" placeholder="Enter your full name" autocomplete="name" required>
+              </div>
+              <span class="report-popup-field-error" id="reportNameError"></span>
+            </div>
+            <div class="report-popup-field">
+              <label for="reportMobile">Mobile Number</label>
+              <div class="report-popup-input">
+                <span class="field-icon">📞</span>
+                <input type="tel" id="reportMobile" placeholder="Enter your mobile number" inputmode="numeric" maxlength="10" autocomplete="tel" required>
+              </div>
+              <span class="report-popup-field-error" id="reportMobileError"></span>
+            </div>
+          </div>
+
+          <div class="report-popup-field">
+            <label for="reportEmail">Email Address</label>
+            <div class="report-popup-input">
+              <span class="field-icon">✉️</span>
+              <input type="email" id="reportEmail" placeholder="Enter your email address" autocomplete="email" required>
+            </div>
+            <span class="report-popup-field-error" id="reportEmailError"></span>
+          </div>
+
+          <div class="report-popup-pricebox">
+            <div class="pricebox-value">
+              <span class="price-was">₹1,499</span>
+              <span class="price-arrow">→</span>
+              <span class="price-now">₹0</span>
+            </div>
+            <span class="pricebox-badge">Free today</span>
+          </div>
+
+          <div class="report-popup-payment">
+            <div class="qr-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="6" height="6" rx="1"></rect>
+                <rect x="15" y="3" width="6" height="6" rx="1"></rect>
+                <rect x="3" y="15" width="6" height="6" rx="1"></rect>
+                <rect x="15.5" y="15.5" width="2" height="2" rx="0.4"></rect>
+                <rect x="19" y="15.5" width="2" height="2" rx="0.4"></rect>
+                <rect x="15.5" y="19" width="2" height="2" rx="0.4"></rect>
+                <rect x="19" y="19" width="2" height="2" rx="0.4"></rect>
+              </svg>
+            </div>
+            <div class="report-popup-payment-info">
+              <h4>Pay securely via QR</h4>
+              <p>Available once you proceed to payment.</p>
+            </div>
+            <span class="payment-disabled-badge">Disabled</span>
+          </div>
+
+          <button type="submit" class="report-popup-submit">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M6 11l6 6 6-6"/><path d="M5 21h14"/></svg>
+            Download my free health report
+          </button>
+
+          <p class="report-popup-microcopy">🔒 Instant access, no hidden charges — your data stays private.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script src="js/core.js"></script>
+<script src="js/bmi-calculator.js"></script>
+<script src="js/patient-info-section.js"></script>
+<script src="js/bmi-summary-section.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="js/report-generator.js"></script>
+<script src="js/report-popup.js"></script>
+<script src="js/faq-accordion.js"></script>
+<script src="js/newsletter-form.js"></script>
+</body>
+</html>

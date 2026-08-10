@@ -1,0 +1,38 @@
+/* =========================================================
+   WHY-CHOOSE.CSS
+   "Why Choose GymBMI?" feature grid.
+   ========================================================= */
+
+.why-section { padding: 56px 0; background: var(--bg-soft); }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+  text-align: center;
+}
+.why-item h4 { font-size: 0.88rem; margin-bottom: 4px; }
+.why-item p { font-size: 0.76rem; color: var(--gray-500); }
+.why-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+.why-icon.green { background: var(--green-bg); color: var(--green); }
+.why-icon.red { background: #fee2e2; color: #dc2626; }
+.why-icon.yellow { background: var(--yellow-bg); color: var(--yellow); }
+.why-icon.purple { background: var(--purple-bg); color: var(--purple); }
+.why-icon.blue { background: var(--blue-bg); color: var(--blue); }
+.why-icon.pink { background: var(--pink-bg); color: var(--pink); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .why-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+}

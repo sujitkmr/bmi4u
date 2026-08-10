@@ -1,0 +1,35 @@
+/* =========================================================
+   HEADER.CSS
+   Site header: logo + free badge.
+   ========================================================= */
+
+.site-header {
+  border-bottom: 1px solid var(--gray-100);
+  padding: 18px 0;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+}
+.logo-bars {
+  color: var(--red);
+  margin: 0 2px;
+  font-weight: 800;
+}
+.badge-free {
+  background: var(--red);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

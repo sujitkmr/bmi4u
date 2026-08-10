@@ -1,0 +1,10 @@
+/* =========================================================
+   FOOTER.CSS
+   Site footer.
+   ========================================================= */
+
+.site-footer { padding: 34px 0; }
+.footer-inner { text-align: center; }
+.footer-logo { justify-content: center; margin-bottom: 10px; }
+.footer-tag { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 14px; }
+.footer-made, .footer-copy { font-size: 0.76rem; color: var(--gray-500); margin-top: 4px; }

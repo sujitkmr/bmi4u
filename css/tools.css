@@ -1,0 +1,40 @@
+/* =========================================================
+   TOOLS.CSS
+   Tools grid: Personal Health Report, BMI Tracker,
+   Healthy Weight Calculator cards.
+   ========================================================= */
+
+.tools-section { padding: 56px 0; }
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.tool-card {
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+.tool-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+.tool-card p { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 18px; flex-grow: 0; }
+.tool-card .btn { margin-top: auto; align-self: flex-start; }
+.check-list { margin-bottom: 18px; }
+.check-list li { font-size: 0.85rem; color: var(--gray-700); margin-bottom: 8px; font-weight: 500; }
+
+.mini-chart { margin-bottom: 18px; }
+.chart-svg { width: 100%; height: 90px; }
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .tools-grid { grid-template-columns: 1fr; }
+}

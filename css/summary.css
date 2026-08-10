@@ -1,0 +1,35 @@
+/* =========================================================
+   SUMMARY.CSS
+   "Your Health Summary" section — BMI, weight range,
+   calories, body fat, water goal, and target cards.
+   ========================================================= */
+
+.summary-section { padding: 56px 0 20px; }
+.summary-grid {
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.summary-card {
+  padding: 26px 14px;
+  text-align: center;
+  border-right: 1px solid var(--gray-100);
+}
+.summary-card:last-child { border-right: none; }
+.summary-icon { font-size: 1.3rem; display: block; margin-bottom: 8px; }
+.summary-label { font-size: 0.72rem; color: var(--gray-500); font-weight: 600; margin-bottom: 6px; }
+.summary-value { font-size: 1.15rem; font-weight: 800; }
+.summary-sub { font-size: 0.7rem; color: var(--green); font-weight: 600; margin-top: 2px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .summary-grid { grid-template-columns: repeat(3, 1fr); }
+  .summary-card:nth-child(3) { border-right: none; }
+}
+
+@media (max-width: 600px) {
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .summary-card:nth-child(2n) { border-right: none; }
+}
